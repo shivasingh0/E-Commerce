@@ -1,0 +1,25 @@
+.Container{
+    /* background-color: rgb(193, 151, 151) !important; */
+    height: 100% !important;
+    display: grid;
+    place-items: center;
+}
+
+.Container .input{
+    width: 500px;
+}
+
+.Container .button{
+    background-color: #212529;
+    color: white;
+    width: 200px;
+    margin-top: 50px;
+    font-weight: 600;
+    font-size: 20px;
+    border-radius: 15px;
+}
+.Container .button:hover{
+    background-color: white;
+    color: #212529;
+    box-shadow: 5px 8px 7px 8px #212529;
+}
