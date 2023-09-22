@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const connectToDatabase = require("./db/config");
 const User = require("./db/users");
+const Product = require('./db/product')
 const app = express();
 
 // Database connection
@@ -10,7 +11,7 @@ connectToDatabase();
 app.use(express.json());
 app.use(cors());
 
-// For Sign-up
+//  Sign-up - API
 const register = async (req, res) => {
   let newUser = new User(req.body);
   let result = await newUser.save();
@@ -20,7 +21,7 @@ const register = async (req, res) => {
 };
 app.post("/register", register);
 
-// For Log-in
+//  Log-in - API
 const login = async (req, res) => {
   if (req.body.email && req.body.password) {
     let user = await User.findOne(req.body).select("-password");
@@ -35,5 +36,13 @@ const login = async (req, res) => {
   }
 };
 app.post("/login", login);
+
+//  Product - API
+const product = async(req, res) => {
+  let newProduct = new Product(req.body);
+  let result = await newProduct.save()
+  res.send(result);
+}
+app.post('/add-product', product)
 
 app.listen(5000);

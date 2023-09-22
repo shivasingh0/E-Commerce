@@ -1,7 +1,7 @@
 import { FloatingLabel, Form } from "react-bootstrap";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./LoginSignup.css";
+import "../Style.css";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -19,9 +19,9 @@ function Login() {
       }
     });
     result = await result.json();
-    console.log(result);
+    // console.log(result);
     if (result.name) {
-      localStorage.setItem('user',JSON.stringify())
+      localStorage.setItem('user',JSON.stringify(result))
       navigate('/')
     }else {
       alert('Enter valid details')

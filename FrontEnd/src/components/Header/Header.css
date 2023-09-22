@@ -12,7 +12,14 @@
     text-decoration: none;
     padding-left: 20px;
     font-weight: 600;
+    margin-left: 2rem;
 }
 .nav-right{
-    margin-left: 85%;
+    margin-left: 75%;
+}
+
+.logo{
+    width: 45px;
+    border-radius: 50px;
+    margin-left: 5rem;
 }

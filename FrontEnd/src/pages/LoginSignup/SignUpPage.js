@@ -1,4 +1,4 @@
-import "./LoginSignup.css";
+import "../Style.css";
 import { FloatingLabel, Form, Button } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -19,7 +19,7 @@ function SignUpPage() {
 
   // SignUp API Integration
   const collectionData = async () =>{
-    console.log(name,email,password);
+    // console.log(name,email,password);
     let result = await fetch('http://localhost:5000/register',{
       method: 'post',
       body: JSON.stringify({name,email,password}),
@@ -28,7 +28,7 @@ function SignUpPage() {
       }
     })
     result = await result.json();
-    console.log(result);
+    // console.log(result);
     localStorage.setItem('user', JSON.stringify(result))
       navigate('/')
   }
