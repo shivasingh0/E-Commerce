@@ -19,7 +19,7 @@ function Header  ()  {
           <img className="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAHXPluq6GtTRPDIHRv5kJPy86uFjp5sO7hg&usqp=CAU" alt="logo" />
             { auth 
               ? <Nav className="me-auto nav_wrapper">
-                  <Link to="/">Home</Link>
+                  <Link to="/products">products</Link>
                   <Link to="/addproduct">Add Product</Link>
                   <Link to="/updateproduct">Update Product</Link>
                   <Link onClick={logout} to="/signup"> Log Out ( { JSON.parse(auth).name } ) </Link> 

@@ -7,6 +7,7 @@
 
 .Container .input{
     width: 500px;
+    /* gap: 50px; */
 }
 
 .Container .button{
@@ -22,4 +23,9 @@
     background-color: white;
     color: #212529;
     box-shadow: 5px 8px 7px 8px #212529;
+}
+
+.invalid-input{
+    margin-top: -20px;
+    color: red;
 }
