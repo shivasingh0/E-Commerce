@@ -1,6 +1,7 @@
 import { FloatingLabel, Form } from "react-bootstrap";
 import '../Style.css'
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function AddProduct() {
     const [name, setName] = useState("");
@@ -8,13 +9,15 @@ function AddProduct() {
     const [category, setCategory] = useState("");
     const [company, setCompany] = useState("");
     const [error, setError] = useState(false)
+    const navigate = useNavigate()
 
     // API Integration
     const addProduct = async () => {
+      alert('Data added')
 
       if (!name || !price || !category || !company) {
         setError(true)
-        return false
+        return  false
       }
 
       const userId = JSON.parse(localStorage.getItem('user'))._id
