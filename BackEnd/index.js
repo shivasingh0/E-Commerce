@@ -63,4 +63,15 @@ const deleteProduct = async (req, res) =>{
 }
 app.delete('/products/:id', deleteProduct)
 
+//  Update Product API
+const updateProduct = async (req, res) => {
+  const result = await Product.findOne({_id:req.params.id})
+  if (result) {
+    res.send(result)
+  } else{
+    res.send({result : 'Record not found'})
+  }
+}
+app.get('/products/:id',updateProduct)
+
 app.listen(5000);

@@ -1,5 +1,6 @@
 import './ProductList.css'
 import React, {useState, useEffect} from 'react'
+import { Link } from 'react-router-dom'
 
 function ProductList() {
 
@@ -52,6 +53,7 @@ function ProductList() {
                                 <td> {item.company} </td>
                                 <td>Rs {item.price} </td>
                                 <td> <button onClick={()=>deleteProduct(item._id)} >Delete</button> </td>
+                                <td> <Link to={`/updateproduct/${item._id}`} >Update</Link> </td>
                            </tr>
                         )
                     }

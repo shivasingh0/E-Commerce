@@ -21,7 +21,7 @@ function Header  ()  {
               ? <Nav className="me-auto nav_wrapper">
                   <Link to="/products">products</Link>
                   <Link to="/addproduct">Add Product</Link>
-                  <Link to="/updateproduct">Update Product</Link>
+                  {/* <Link to="/updateproduct">Update Product</Link> */}
                   <Link onClick={logout} to="/signup"> Log Out ( { JSON.parse(auth).name } ) </Link> 
                 </Nav>
               :
