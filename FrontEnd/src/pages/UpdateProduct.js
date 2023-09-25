@@ -1,7 +1,7 @@
 import { FloatingLabel, Form } from "react-bootstrap";
 import './Style.css'
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 function UpdateProduct() {
     const [name, setName] = useState("");
@@ -9,12 +9,13 @@ function UpdateProduct() {
     const [category, setCategory] = useState("");
     const [company, setCompany] = useState("");
     const params = useParams()
+    const navigate = useNavigate()
 
     useEffect ( () => {
         getProductDetails();
     },[])
     
-    // API Integration
+    // API Integration [ Prefilling ]
     const getProductDetails = async () => {
         console.log(params);
         let result = await fetch(`http://localhost:5000/products/${params.id}`)
@@ -25,8 +26,18 @@ function UpdateProduct() {
         setCompany(result.company)
     }
 
+    //  API Integration { update existing data }
     const updateProduct = async () => {
-        console.log(name, price, category, company);
+        let result = await fetch(`http://localhost:5000/products/${params.id}`,{
+            method : 'put',
+            body : JSON.stringify( {name,price,category,company} ),
+            headers :{
+                'Content-Type' : 'Application/json'
+            }
+        })
+        result = await result.json();
+        console.log(result);
+        navigate('/products')
     }
 
   return (
