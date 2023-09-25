@@ -62,7 +62,7 @@ function UpdateProduct() {
       >
         <Form.Control
           className="input"
-          type="text"
+          type="number"
           onChange={ (e)=>setPrice(e.target.value) }
           value={price}
         />

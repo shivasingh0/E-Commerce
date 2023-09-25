@@ -79,10 +79,29 @@ const updateExistingProduct = async (req,res) => {
   let result = await Product.updateOne(
     {_id: req.params.id},
     {
-      $set : req.body
+      $set : req.body     // $set is used to set update data
     })
     res.send(result);
 }
 app.put('/products/:id', updateExistingProduct)
+
+// Search Product API
+const searchProduct = async (req, res) => {
+  try {
+    let result = await Product.find({
+      "$or" : [
+        {name: {$regex: req.params.key}},
+        {company: {$regex: req.params.key}},
+        {category: {$regex: req.params.key}}
+      ]
+    });
+    res.send(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+}
+app.get('/search/:key', searchProduct)
+
 
 app.listen(5000);
