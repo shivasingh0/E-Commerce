@@ -91,7 +91,7 @@ function UpdateProduct() {
           value={company}
         />
       </FloatingLabel>
-      <button onClick={updateProduct} className="button">Add Product</button>
+      <button onClick={updateProduct} className="button">Update Product</button>
     </div>
   );
 }

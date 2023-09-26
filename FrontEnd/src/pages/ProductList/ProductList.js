@@ -14,7 +14,11 @@ function ProductList() {
 
     // Get product API Integration
     const getProduct = async () =>{
-        let result = await fetch('http://localhost:5000/products');
+        let result = await fetch('http://localhost:5000/products',{
+            headers : {
+                authrization : JSON.parse(localStorage.getItem('token'))
+            }
+        });
         result = await result.json();
         setProducts(result)
     }
