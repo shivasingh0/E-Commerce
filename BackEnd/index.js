@@ -1,8 +1,9 @@
 const express = require("express");
 const cors = require("cors");
 const connectToDatabase = require("./db/config");
-const User = require("./db/users");
-const Product = require("./db/product");
+const User = require("./Schemas/users");
+const Product = require("./Schemas/product");
+const Card = require("./Schemas/cardData")
 
 // import jwt token
 const Jwt = require("jsonwebtoken");
@@ -121,5 +122,13 @@ const searchProduct = async (req, res) => {
   }
 };
 app.get("/search/:key", searchProduct);
+
+// Card Data - API
+const cardProduct = async (req,res) => {
+  let cardData = await Card.find();
+  res.send(cardData)
+};
+app.get("/card", cardProduct);
+
 
 app.listen(5000);
