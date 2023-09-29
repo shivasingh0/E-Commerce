@@ -124,9 +124,23 @@ const searchProduct = async (req, res) => {
 app.get("/search/:key", searchProduct);
 
 // Card Data - API
+// const cardProduct = async (req,res) => {
+//   let cardData = await Card.find();
+//   res.send(cardData)
+// };
+// app.get("/card", cardProduct);
+
 const cardProduct = async (req,res) => {
-  let cardData = await Card.find();
-  res.send(cardData)
+  const { category } = req.query;
+  let cardData;
+    if (category) {
+      // If a category is specified, filter by that category
+      cardData = await Card.find({ category });
+    } else {
+      // If no category is specified, return all card data
+      cardData = await Card.find();
+    }
+    res.send(cardData);
 };
 app.get("/card", cardProduct);
 

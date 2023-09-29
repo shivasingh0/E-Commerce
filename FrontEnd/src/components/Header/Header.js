@@ -16,12 +16,12 @@ function Header  ()  {
 
   return (
         <Navbar className="navbar" bg="dark" data-bs-theme="dark">
-          <Link to="/home">
+          <Link to="/">
           <img className="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAHXPluq6GtTRPDIHRv5kJPy86uFjp5sO7hg&usqp=CAU" alt="logo" />
           </Link>
             { auth 
               ? <Nav className="me-auto nav_wrapper">
-                  <Link to="/home">Home</Link>
+                  <Link to="/">Home</Link>
                   <Link to="/products">Products</Link>
                   <Link to="/addproduct">Add Product</Link>
                   {/* <Link to="/updateproduct">Update Product</Link> */}

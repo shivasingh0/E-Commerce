@@ -15,7 +15,7 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/home" element = { <Main/> } />
+          <Route path="/" element = { <Main/> } />
           <Route element={<PrivateComponent />}>
             <Route path="/products" element={ <ProductList/> } />
             <Route path="/addproduct" element={<AddProduct />} />

@@ -4,16 +4,40 @@ import { useEffect, useState } from "react";
 
 function DarkVariantExample() {
   const [cardData, setCardData] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState([]);
+
+  const fetchProductsByCategory = async (category) => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/card?category=${category}`
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setCardData(data);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
-    cardProduct();
+    fetchProductsByCategory(selectedCategory);
   }, []);
 
-  const cardProduct = async () => {
-    let result = await fetch("http://localhost:5000/card");
-    result = await result.json();
-    setCardData(result);
+  // Function to group products by category
+  const groupProductsByCategory = () => {
+    const groupedProducts = {};
+    cardData.forEach((item) => {
+      const category = item.category;
+      if (!groupedProducts[category]) {
+        groupedProducts[category] = [];
+      }
+      groupedProducts[category].push(item);
+    });
+    return groupedProducts;
   };
+
+  const groupedProducts = groupProductsByCategory();
 
   return (
     <div style={{ backgroundColor: "#e6e5e5" }}>
@@ -55,21 +79,23 @@ function DarkVariantExample() {
         </Carousel.Item>
       </Carousel>
       {/* Cards */}
-      <div className="card-wrapper">
-        <h2>Cards</h2>
-        <div className="card-flex">
-          {cardData.map((item, index) => (
-            <div className="card" key={index}>
-              <img src={item.images[0]} alt="" />
-              <div className="card-text">
-                <p>{item.title}</p>
-                <p>Rs. {item.price}</p>
-                <p>Rating: {item.rating} / 5</p>
+      {Object.entries(groupedProducts).map(([category, products], index) => (
+        <div key={index} className="card-wrapper">
+          <h2 className="title">{category}</h2>
+          <div className="card-flex">
+            {products.map((item, itemIndex) => (
+              <div key={itemIndex} className="card">
+                <img src={item.images[0]} alt="" />
+                <div className="card-text">
+                  <p className="title">{item.title}</p>
+                  <p> <b>Rs:</b> {item.price}</p>
+                  <p> <b>Rating:</b> {item.rating} / 5</p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
+      ))}
     </div>
   );
 }

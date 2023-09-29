@@ -10,21 +10,27 @@
     background-color: white;
     padding: 30px;
 }
+.card-wrapper .title{
+    font-weight: 700;
+}
 .card-wrapper .card-flex{
     display: flex;
+    justify-content: space-evenly;
     flex-wrap: wrap;
     gap: 19px;
 }
 .card-wrapper .card{
     border-radius: 15px;
     width: 15rem;
-    height: 15rem;
+    height: 25rem;
     text-align: center;
     cursor: pointer;
     margin-top: 30px;
+    transition: scale 0.3s;
 }
 .card-wrapper .card:hover{
     box-shadow: 8px 0 5px 7px gray;
+    scale: 1.02;
 }
 .card-wrapper .card img{
     width:100%;
@@ -33,4 +39,8 @@
 }
 .card-wrapper .card .card-text{
     padding: 3px;
+}
+.card-wrapper .card .card-text .title{
+    font-size: 23px;
+    font-weight: 600;
 }
