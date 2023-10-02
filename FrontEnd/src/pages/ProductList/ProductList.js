@@ -70,8 +70,9 @@ function ProductList() {
                     <tr>
                         <th>S.No.</th>
                         <th>Name</th>
+                        <th>Brand</th>
                         <th>Category</th>
-                        <th>Company</th>
+                        <th>Ratings</th>
                         <th>Price</th>
                         <th>Operation</th>
                     </tr>
@@ -82,9 +83,10 @@ function ProductList() {
                       products.length > 0 ? products.map((item,index)=>
                             <tr key={index}>
                                 <td> {index + 1} </td>
-                                <td> {item.name} </td>
+                                <td> {item.title} </td>
+                                <td> {item.brand} </td>
                                 <td> {item.category} </td>
-                                <td> {item.company} </td>
+                                <td> {item.rating} / 5</td>
                                 <td>Rs {item.price} </td>
                                 <td> <button onClick={()=>deleteProduct(item._id)} >Delete</button> </td>
                                 <td> <Link to={`/updateproduct/${item._id}`} >Update</Link> </td>

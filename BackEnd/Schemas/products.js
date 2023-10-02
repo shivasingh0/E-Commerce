@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
-// cardData-schema
-const cardSchema = new mongoose.Schema({
+// productData-schema
+const productSchema = new mongoose.Schema({
     id: Number,
     title: String,
     description: String,
@@ -15,6 +15,6 @@ const cardSchema = new mongoose.Schema({
     images: [Array]
 });
 
-const Card = mongoose.model("Card", cardSchema);
+const Product = mongoose.model('Product', productSchema)
 
-module.exports = Card;
+module.exports = Product;

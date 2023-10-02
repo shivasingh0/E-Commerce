@@ -1,5 +1,4 @@
 .Container{
-    /* background-color: rgb(193, 151, 151) !important; */
     height: 100% !important;
     display: grid;
     place-items: center;
@@ -7,7 +6,6 @@
 
 .Container .input{
     width: 500px;
-    /* gap: 50px; */
 }
 
 .Container .button{

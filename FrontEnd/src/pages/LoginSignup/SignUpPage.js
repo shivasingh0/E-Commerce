@@ -1,4 +1,4 @@
-import "../Style.css";
+import "./Style.css";
 import { FloatingLabel, Form, Button } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";

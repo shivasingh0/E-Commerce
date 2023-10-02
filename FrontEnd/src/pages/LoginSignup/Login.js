@@ -1,7 +1,7 @@
 import { FloatingLabel, Form } from "react-bootstrap";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../Style.css";
+import "./Style.css";
 
 function Login() {
   const [email, setEmail] = useState("");

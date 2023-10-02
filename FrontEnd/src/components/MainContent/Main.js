@@ -1,10 +1,12 @@
 import React from 'react'
-import DarkVariantExample from '../../pages/Home/Home';
+import Home from '../../pages/Home/Home';
+import Footer from '../Footer/Footer';
 
 function Main() {
   return (
     <div>
-      <DarkVariantExample/>
+      <Home/>
+      <Footer/>
     </div>
   )
 }

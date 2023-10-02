@@ -1,10 +1,13 @@
 import { Carousel } from "react-bootstrap";
 import "./Home.css";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function DarkVariantExample() {
+function Home() {
   const [cardData, setCardData] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState([]);
+
+  const navigate = useNavigate();
 
   const fetchProductsByCategory = async (category) => {
     try {
@@ -39,13 +42,18 @@ function DarkVariantExample() {
 
   const groupedProducts = groupProductsByCategory();
 
+  // Navigate to Card Data Page
+  function productData() {
+    navigate('/productData')
+  }
+
   return (
-    <div style={{ backgroundColor: "#e6e5e5" }}>
+    <div style={{ backgroundColor: "#e6e5e5",minHeight: "calc(100vh - 100px)" }}>
       <Carousel className="crousel-wrapper" data-bs-theme="dark">
         <Carousel.Item className="crousel-item">
           <img
             className="d-block w-100 image"
-            src="https://d2r2ijn7njrktv.cloudfront.net/apnlive/uploads/2021/10/26145125/apple-iphone-12-color-blue-10132020-big-carousel-jpg-large-2x-1602613411-1024x514.jpg"
+            src="https://img.freepik.com/premium-psd/horizontal-website-banne_451189-110.jpg"
             alt="First slide"
           />
           <Carousel.Caption>
@@ -55,8 +63,8 @@ function DarkVariantExample() {
         </Carousel.Item>
         <Carousel.Item className="crousel-item">
           <img
-            className="d-block w-100"
-            src="https://soliloquywp.com/wp-content/uploads/2019/03/nb_wcs_cover.jpg"
+            className="d-block w-100 image"
+            src="https://i.pinimg.com/1200x/e9/e4/b9/e9e4b906bd5282d31b24fae4876c880c.jpg"
             alt="Second slide"
           />
           <Carousel.Caption>
@@ -66,8 +74,8 @@ function DarkVariantExample() {
         </Carousel.Item>
         <Carousel.Item className="crousel-item">
           <img
-            className="d-block w-100"
-            src="https://images.unsplash.com/photo-1502136969935-8d8eef54d77b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGNhcm91c2VsfGVufDB8fDB8fHww&w=1000&q=80"
+            className="d-block w-100 image"
+            src="https://img.freepik.com/premium-vector/modern-style-square-colorful-web-banner-design-premium-vector_656447-13.jpg"
             alt="Third slide"
           />
           <Carousel.Caption>
@@ -84,7 +92,7 @@ function DarkVariantExample() {
           <h2 className="title">{category}</h2>
           <div className="card-flex">
             {products.map((item, itemIndex) => (
-              <div key={itemIndex} className="card">
+              <div key={itemIndex} onClick={productData} className="card">
                 <img src={item.images[0]} alt="" />
                 <div className="card-text">
                   <p className="title">{item.title}</p>
@@ -100,4 +108,4 @@ function DarkVariantExample() {
   );
 }
 
-export default DarkVariantExample;
+export default Home;

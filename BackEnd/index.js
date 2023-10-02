@@ -2,8 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const connectToDatabase = require("./db/config");
 const User = require("./Schemas/users");
-const Product = require("./Schemas/product");
-const Card = require("./Schemas/cardData")
+const Product = require("./Schemas/products");
 
 // import jwt token
 const Jwt = require("jsonwebtoken");
@@ -56,7 +55,7 @@ const login = async (req, res) => {
 };
 app.post("/login", login);
 
-//  Product - API
+// Add Product - API
 const product = async (req, res) => {
   let newProduct = new Product(req.body);
   let result = await newProduct.save();
@@ -110,8 +109,8 @@ const searchProduct = async (req, res) => {
   try {
     let result = await Product.find({
       $or: [
-        { name: { $regex: req.params.key } },
-        { company: { $regex: req.params.key } },
+        { title: { $regex: req.params.key } },
+        { brand: { $regex: req.params.key } },
         { category: { $regex: req.params.key } },
       ],
     });
@@ -124,21 +123,15 @@ const searchProduct = async (req, res) => {
 app.get("/search/:key", searchProduct);
 
 // Card Data - API
-// const cardProduct = async (req,res) => {
-//   let cardData = await Card.find();
-//   res.send(cardData)
-// };
-// app.get("/card", cardProduct);
-
 const cardProduct = async (req,res) => {
   const { category } = req.query;
   let cardData;
     if (category) {
       // If a category is specified, filter by that category
-      cardData = await Card.find({ category });
+      cardData = await Product.find({ category });
     } else {
       // If no category is specified, return all card data
-      cardData = await Card.find();
+      cardData = await Product.find();
     }
     res.send(cardData);
 };
