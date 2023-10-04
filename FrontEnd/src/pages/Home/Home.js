@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 function Home() {
   const [cardData, setCardData] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState([]);
+  // const {id} = useParams()
 
   const navigate = useNavigate();
 
@@ -43,8 +44,8 @@ function Home() {
   const groupedProducts = groupProductsByCategory();
 
   // Navigate to Card Data Page
-  function productData() {
-    navigate('/productData')
+  const productData = (id) => {
+    navigate(`/productData/${id}`)
   }
 
   return (
@@ -92,7 +93,7 @@ function Home() {
           <h2 className="title">{category}</h2>
           <div className="card-flex">
             {products.map((item, itemIndex) => (
-              <div key={itemIndex} onClick={productData} className="card">
+              <div key={itemIndex} onClick={ (()=> productData(item._id))} className="card">
                 <img src={item.images[0]} alt="" />
                 <div className="card-text">
                   <p className="title">{item.title}</p>
