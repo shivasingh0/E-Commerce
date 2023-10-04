@@ -1,12 +1,12 @@
 import { Carousel } from "react-bootstrap";
 import "./Home.css";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function Home() {
   const [cardData, setCardData] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState([]);
-  // const {id} = useParams()
+  // const params = useParams()
 
   const navigate = useNavigate();
 
