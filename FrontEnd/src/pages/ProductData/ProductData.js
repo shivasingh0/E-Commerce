@@ -1,26 +1,26 @@
 import React, { useEffect, useState } from "react";
 import "./ProductData.css";
 import { useParams } from "react-router-dom";
-import { Carousel } from "react-bootstrap";
+import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 
 function ProductCard() {
   const params = useParams();
   const [product, setProduct] = useState(null);
+  const [currentImage, setCurrentImage] = useState(0);
 
   useEffect(() => {
     getCardData();
   }, []);
 
-  const getCardData = async (id) => {
+  const getCardData = async () => {
     try {
       let result = await fetch(`http://localhost:5000/products/${params.id}`, {
         method: "GET",
         headers: {
-          "Content-Type": "aplication/json",
+          "Content-Type": "application/json",
         },
       });
 
-      // console.log(result);
       if (result.ok) {
         result = await result.json();
         setProduct(result);
@@ -28,58 +28,57 @@ function ProductCard() {
         console.log("Data not found");
       }
     } catch (error) {
-      console.log("Error to fetch");
+      console.log("Error fetching data");
     }
+  };
+
+  const handleNextImage = () => {
+    setCurrentImage((prevImage) => (prevImage + 1) % product.images.length);
+  };
+
+  const handlePrevImage = () => {
+    setCurrentImage((prevImage) =>
+      prevImage === 0 ? product.images.length - 1 : prevImage - 1
+    );
   };
 
   return (
     <div className="card-container">
       <h1>Product Data</h1>
-      <>
+      <div className="main-container">
         {product ? (
-          <>
+          <div>
             <div className="left-container">
               {product.images.length === 1 ? (
-                <img src={product.images[0]} alt="" />
+                <img
+                  className="image"
+                  src={product.images[0] || [1] || [2] || [3]}
+                  alt="img"
+                />
               ) : (
-                <Carousel data-bs-theme="dark" className="w-50">
-                  <Carousel.Item>
-                    <img
-                      className="d-block w-100"
-                      src={product.images[0]}
-                      alt="First slide"
-                    />
-                  </Carousel.Item>
-                  <Carousel.Item>
-                    <img
-                      className="d-block w-100"
-                      src={product.images[1]}
-                      alt="Second slide"
-                    />
-                  </Carousel.Item>
-                  <Carousel.Item>
-                    <img
-                      className="d-block w-100"
-                      src={product.images[2]}
-                      alt="Third slide"
-                    />
-                  </Carousel.Item>
-                  <Carousel.Item>
-                    <img
-                      className="d-block w-100"
-                      src={product.images[3]}
-                      alt="Third slide"
-                    />
-                  </Carousel.Item>
-                </Carousel>
+                <div className="carousel">
+                  <BsChevronLeft
+                    className="left-button"
+                    onClick={handlePrevImage}
+                  />
+                  <img
+                    src={product.images[currentImage]}
+                    alt={`Slide ${currentImage + 1}`}
+                    className="image"
+                  />
+                  <BsChevronRight
+                    className="right-button"
+                    onClick={handleNextImage}
+                  />
+                </div>
               )}
             </div>
             <div className="right-container"></div>
-          </>
+          </div>
         ) : (
           <h1>Loading Data</h1>
         )}
-      </>
+      </div>
     </div>
   );
 }
