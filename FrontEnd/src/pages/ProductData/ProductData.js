@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./ProductData.css";
 import { useParams } from "react-router-dom";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+import Footer from "../../components/Footer/Footer";
 
 function ProductCard() {
   const params = useParams();
@@ -44,10 +45,10 @@ function ProductCard() {
 
   return (
     <div className="card-container">
-      <h1>Product Data</h1>
-      <div className="main-container">
-        {product ? (
-          <div>
+      {product ? (
+        <>
+          <h1 className="category"> {product.category} </h1>
+          <div className="main-container">
             <div className="left-container">
               {product.images.length === 1 ? (
                 <img
@@ -73,12 +74,36 @@ function ProductCard() {
                 </div>
               )}
             </div>
-            <div className="right-container"></div>
+            <div className="right-container">
+              <div className="title-div">
+                <h1>
+                  {product.title} <br /> ( {product.brand} )
+                </h1>
+                <p className="rating">{product.rating} * </p>
+                <span>Rating</span>
+              </div>
+              <p className="description"> {product.description} </p>
+              <p className="discount">
+                Extra ₹{product.discountPercentage} off
+              </p>
+              <p className="price"> ₹{product.price} /- </p>
+              <p>+ ₹51 secured packaging fee </p>
+              <p className="stocks"> Stock available : {product.stock} </p>
+              <div className="buttons">
+                <a href="/buttons/43" class="btn41-43 btn-43">
+                  Add to cart
+                </a>
+                <a href="/buttons/42" class="btn41-43 btn-42">
+                  Buy Now
+                </a>
+              </div>
+            </div>
           </div>
-        ) : (
-          <h1>Loading Data</h1>
-        )}
-      </div>
+        </>
+      ) : (
+        <h1>Loading Data</h1>
+      )}
+      <Footer />
     </div>
   );
 }
